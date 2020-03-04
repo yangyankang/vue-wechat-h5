@@ -1,0 +1,175 @@
+/* page change */
+$--transition-time: 300ms;
+.back-enter-active,
+.back-leave-active,
+.forward-enter-active,
+.forward-leave-active {
+  will-change: transform;
+  transition: transform $--transition-time;
+  position: absolute;
+  height: 100%;
+  backface-visibility: hidden;
+  perspective: 1000;
+}
+.back-enter {
+  opacity: 0.75;
+  transform: translate3d(-50%, 0, 0) !important;
+}
+.back-enter-active {
+  z-index: -1 !important;
+  transition: transform $--transition-time;
+}
+.back-leave-active {
+  transform: translate3d(100%, 0, 0) !important;
+  transition: transform $--transition-time;
+}
+.forward-enter {
+  transform: translate3d(100%, 0, 0) !important;
+}
+.forward-enter-active {
+  transition: transform $--transition-time !important;
+}
+.forward-leave-active {
+  z-index: -1;
+  opacity: 0.65;
+  transform: translate3d(-50%, 0, 0) !important;
+  transition: transform $--transition-time;
+}
+
+/* 公共部分 */
+* {
+  box-sizing: border-box;
+}
+// html,
+// body {
+//   height: 100%;
+//   background: $main-color;
+// }
+
+/* 修改placeholder默认颜色 */
+::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: rgba(197, 197, 197, 1);
+}
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: rgba(197, 197, 197, 1);
+}
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: rgba(197, 197, 197, 1);
+}
+:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: rgba(197, 197, 197, 1);
+}
+
+/* 公共字体 */
+
+// 数字字体加粗
+@font-face {
+  font-family: 'number_bold';
+  src: url('~@/assets/font/TG-TYPE-Bold.otf');
+}
+
+// 数字字体常规
+@font-face {
+  font-family: 'number_regular';
+  src: url('~@/assets/font/TG-TYPE-Regular.otf');
+}
+
+.number-bold {
+  font-family: number_bold;
+}
+.number-regular {
+  font-family: number_regular;
+}
+
+/* 像素 */
+.onepx-border {
+  height: 1px;
+  background: $border-bottom-color;
+  transform: scaleY(0.5);
+}
+
+.container {
+  background-color: $white;
+}
+
+/* 金额数字有关样式 */
+.symbol {
+  display: flex;
+  align-items: flex-end;
+  font-weight: bold;
+}
+
+/* 计步器 */
+.van-stepper {
+  .van-stepper__minus {
+    border-radius: 4px;
+    background: rgba(216, 216, 216, 1);
+  }
+  .van-stepper__plus {
+    background: rgba(239, 206, 144, 1);
+    border-radius: 4px;
+  }
+  .van-stepper__minus,
+  .van-stepper__plus {
+    width: 22px;
+    height: 22px;
+    padding: 6px;
+  }
+  .van-stepper__minus::before,
+  .van-stepper__plus::before {
+    width: 10px;
+    height: 2px;
+  }
+  .van-stepper__minus::after,
+  .van-stepper__plus::after {
+    width: 2px;
+    height: 10px;
+  }
+  .van-stepper__minus::after,
+  .van-stepper__minus::before,
+  .van-stepper__plus::after,
+  .van-stepper__plus::before {
+    background-color: rgba(58, 58, 58, 1);
+  }
+  .van-stepper__input {
+    background-color: transparent;
+    height: 22px;
+    font-size: 18px;
+    // color: rgba(51, 51, 51, 1);
+  }
+  .van-stepper__input[disabled] {
+    color: #333;
+    -webkit-text-fill-color: #333;
+    -webkit-opacity: 1;
+    opacity: 1;
+  }
+}
+
+/* tab选项卡公共样式 */
+.van-tabs__line {
+  background: rgba(239, 206, 144, 1);
+}
+.van-tabs--line {
+  .van-tabs__wrap {
+    height: 44px;
+    padding: 0 53px;
+    background: #ffffff;
+    .van-tabs__nav {
+      .van-tab {
+        padding: 0 15px;
+        font-size: 16px;
+        &.van-tab--active {
+          font-size: 16px;
+          font-weight: bold;
+        }
+        .tab-title {
+          display: flex;
+        }
+      }
+    }
+  }
+}
