@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import './registerServiceWorker'
+
 import {
   Toast,
   List,
@@ -19,6 +20,8 @@ import {
   SwipeItem,
   CountDown
 } from 'vant' // 全局引入vant样式
+
+import '@/icons'
 
 Vue.use(Toast)
   .use(List)
