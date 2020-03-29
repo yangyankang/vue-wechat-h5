@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import store from '@/store'
 
 /*  解决vue项目路由出现message: "Navigating to current location (XXX) is not allowed"的问题*/
 const routerPush = VueRouter.prototype.push
@@ -38,32 +37,5 @@ const router = new VueRouter({
   scrollBehavior: () => ({ y: 0 }),
   routes
 })
-
-router.afterEach((to, from) => {
-  store.commit('page/setTitle', to.meta.title)
-
-  let path = to.fullPath.slice(1) // 去除'/'
-  if (!sessionStorage.getItem('initLink')) {
-    // 解决ios微信下，分享签名不成功的问题,将第一次的进入的url缓存起来。
-    sessionStorage.setItem('initLink', document.URL)
-  }
-  let url
-  if (!!window.__wxjs_is_wkwebview) {
-    // ios
-    url = sessionStorage.getItem('initLink')
-  } else {
-    // 安卓
-    url = location.origin + process.env.BASE_URL + path
-  }
-  store.commit('page/setInitLink', url)
-})
-
-export function resetRouter() {
-  if (store.getters.device === 'wx') {
-    router.replace('/wxlogin')
-  } else {
-    router.replace('/login')
-  }
-}
 
 export default router

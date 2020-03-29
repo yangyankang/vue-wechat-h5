@@ -3,6 +3,8 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import './registerServiceWorker'
+import filters from '@/filters'
+import * as directives from './directives'
 
 import {
   Toast,
@@ -38,6 +40,15 @@ Vue.use(Toast)
   .use(SwipeItem)
   .use(CountDown)
 
+  // 注入全局过滤器
+Object.keys(filters).forEach(item => {
+  Vue.filter(item, filters[item])
+})
+
+// 注入全局指令
+Object.keys(directives).forEach(item => {
+  Vue.directive(item, directives[item])
+})
 Vue.config.productionTip = false
 
 new Vue({
