@@ -21,10 +21,9 @@ export const SET_CACHEOPTIONLIST = 'set_cacheoptionlist' // 设置答题中已�
 export const RESET_CACHEOPTIONLIST = 'reset_cacheoptionlist' // 清空答题中已经选过的题目
 export const SET_CACHETIPSHOWTYPELIST = 'set_cachetipshowtypelist' //缓存设置题目显示类型
 export const RESET_CACHETIPSHOWTYPELIST = 'RESET_CACHETIPSHOWTYPELIST' //重置缓存类型
-export const SUBMIT_ANSWERSHEET =  'SUBMITANSWERSHEET' //提交答案
-export const SET_ANSWERSHEET = 'SET_ANSWERSHEET'//答案结果
-export const SET_EXAM_FULLURL =  'SET_EXAM_FULLURL' //设置完整路径
-
+export const SUBMIT_ANSWERSHEET = 'SUBMITANSWERSHEET' //提交答案
+export const SET_ANSWERSHEET = 'SET_ANSWERSHEET' //答案结果
+export const SET_EXAM_FULLURL = 'SET_EXAM_FULLURL' //设置完整路径
 
 //localstoreage key
 export const SUBMIT_PARAMS = 'SUBMIT_PARAMS' //提交答案的参数
@@ -38,4 +37,3 @@ export const INVITER_USERINFO = 'inviter_userinfo' // 邀请人用户信息
 export const SET_INVITER_USERINFO = 'set_inviter_userinfo' // 设置邀请人用户信息
 
 /* actions常量 */
-

@@ -1,19 +1,16 @@
 <template>
-  <div>404页面</div>
+    <div>404页面</div>
 </template>
 
 <script>
 export default {
-  data () {
-    return {
-      
-    }
-  },
-  components: {},
-  mounted () {},
-  methods: {}
+    data() {
+        return {}
+    },
+    components: {},
+    mounted() {},
+    methods: {},
 }
 </script>
 
-<style lang='scss' scoped>
-</style>
+<style lang="scss" scoped></style>
