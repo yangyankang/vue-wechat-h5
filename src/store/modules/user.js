@@ -10,7 +10,7 @@ import {
 } from '@/utils/constant'
 import { loginByPhone, fetchUserInfo } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
-import { resetRouter } from '@/router'
+// import { resetRouter } from '@/router'
 import { Toast } from 'vant'
 
 const state = {
@@ -29,7 +29,7 @@ const mutations = {
         state.token = ''
         removeToken(USER_TOKEN)
         sessionStorage.removeItem(USERINFO)
-        resetRouter()
+        // resetRouter()
     },
     [SET_TOKEN](state, token) {
         state.token = token

@@ -6,6 +6,9 @@ import './registerServiceWorker'
 import filters from '@/filters'
 import * as directives from './directives'
 
+// token 验证
+import './permission'
+
 import {
     Toast,
     List,
