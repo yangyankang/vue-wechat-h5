@@ -7,10 +7,10 @@ import request from '@/utils/request'
  * @returns
  */
 export function test() {
-  return request({
-    url: '/test',
-    method: 'get'
-  })
+    return request({
+        url: '/test',
+        method: 'get',
+    })
 }
 
 /**
@@ -20,11 +20,11 @@ export function test() {
  * @returns
  */
 export function loginByPhone(data) {
-  return request({
-    url: '/loginByPhone',
-    method: 'post',
-    data
-  })
+    return request({
+        url: '/loginByPhone',
+        method: 'post',
+        data,
+    })
 }
 
 /**
@@ -34,13 +34,13 @@ export function loginByPhone(data) {
  * @returns
  */
 export function sendPhoneVerifyCode(phone) {
-  return request({
-    url: '/sendPhoneVerifyCode',
-    method: 'get',
-    params: {
-      phone
-    }
-  })
+    return request({
+        url: '/sendPhoneVerifyCode',
+        method: 'get',
+        params: {
+            phone,
+        },
+    })
 }
 
 /**
@@ -50,13 +50,13 @@ export function sendPhoneVerifyCode(phone) {
  * @returns
  */
 export function updateUsername(userName) {
-  return request({
-    url: '/user/updateUserName',
-    method: 'post',
-    data: {
-      userName
-    }
-  })
+    return request({
+        url: '/user/updateUserName',
+        method: 'post',
+        data: {
+            userName,
+        },
+    })
 }
 
 /**
@@ -65,15 +65,15 @@ export function updateUsername(userName) {
  * @returns
  */
 export function fetchUserInfo() {
-  return request({
-    url: '/user/detail',
-    method: 'get'
-  })
+    return request({
+        url: '/user/detail',
+        method: 'get',
+    })
 }
 
 export function logout() {
-  return request({
-    url: '/user/logout',
-    method: 'post'
-  })
+    return request({
+        url: '/user/logout',
+        method: 'post',
+    })
 }
