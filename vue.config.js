@@ -34,8 +34,10 @@ module.exports = {
         },
     },
 
+    // 在开发环境保存修复
     lintOnSave: process.env.NODE_ENV === 'development',
 
+    // eslint报错遮罩
     devServer: {
         open: true,
         overlay: {
