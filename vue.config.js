@@ -1,13 +1,35 @@
 'use strict'
 const path = require('path')
-// const isProduction =
-// (process.env.NODE_ENV === process.env.NODE_ENV) !== 'development' // 开发和测试环境一样的配置
-// let devNeedCdn = false // 本地是否需要注入cdn
+const isProduction =
+    (process.env.NODE_ENV === process.env.NODE_ENV) !== 'development' // 开发和测试环境一样的配置
+let devNeedCdn = false // 本地是否需要注入cdn
+const CompressionPlugin = require('compression-webpack-plugin')
 
 function resolve(dir) {
     return path.join(__dirname, dir)
 }
 
+// 声明cdn的配置
+const cdn = {
+    css: ['https://cdn.jsdelivr.net/npm/vant@2.5/lib/index.css'],
+    js: [
+        'https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js',
+        'https://cdn.jsdelivr.net/npm/vant@2.5/lib/vant.min.js',
+        'https://cdn.bootcss.com/vue-router/3.1.3/vue-router.min.js',
+        'https://cdn.bootcss.com/axios/0.19.0/axios.min.js',
+        'https://cdn.bootcss.com/vuex/3.1.1/vuex.min.js',
+        // 'https://cdn.bootcss.com/echarts/4.3.0/echarts-en.common.min.js'
+    ],
+    // cdn：模块名称和模块作用域命名（对应window里面挂载的变量名称）
+    externals: {
+        vue: 'Vue',
+        'vue-router': 'VueRouter',
+        axios: 'axios',
+        lodash: '_',
+        // echarts: 'echarts',
+        vant: 'vant',
+    },
+}
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
 module.exports = {
     /**
@@ -56,7 +78,12 @@ module.exports = {
             },
         },
     },
-
+    configureWebpack: config => {
+        if (isProduction || this.devServer) {
+            // 使用externals设置排除项
+            config.externals = cdn.externals
+        }
+    },
     chainWebpack(config) {
         config.plugins.delete('preload') // TODO: need test
         config.plugins.delete('prefetch') // TODO: need test
@@ -90,6 +117,12 @@ module.exports = {
                 return options
             })
             .end()
+
+        // 生产环境和测试环境注入cdn
+        config.plugin('html').tap(args => {
+            if (isProduction || devNeedCdn) args[0].cdn = cdn
+            return args
+        })
 
         /* 开发环境 */
         config
@@ -149,6 +182,15 @@ module.exports = {
             })
             config.optimization.runtimeChunk('single')
             config.optimization.minimize(true)
+
+            // 文件压缩
+            config.plugin('compressionPlugin').use(
+                new CompressionPlugin({
+                    test: /\.js$|\.html$|.\css/, // 匹配文件名
+                    threshold: 10240, // 对超过10k的数据压缩
+                    deleteOriginalAssets: false, // 不删除源文件
+                })
+            )
         })
 
         /* 生产环境 */

@@ -6,6 +6,8 @@ import './registerServiceWorker'
 import filters from '@/filters'
 import * as directives from './directives'
 
+import VueLazyload from 'vue-lazyload'
+import LoadingImg from '@/assets/img/lazyload_img.jpg'
 // token 验证
 import './permission'
 
@@ -42,6 +44,12 @@ Vue.use(Toast)
     .use(Swipe)
     .use(SwipeItem)
     .use(CountDown)
+
+// 图片懒加载
+Vue.use(VueLazyload, {
+    loading: LoadingImg,
+    attempt: 1,
+})
 
 // 注入全局过滤器
 Object.keys(filters).forEach(item => {
